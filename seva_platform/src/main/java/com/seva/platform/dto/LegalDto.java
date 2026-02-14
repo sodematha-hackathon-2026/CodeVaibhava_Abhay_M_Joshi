@@ -10,6 +10,7 @@ public class LegalDto {
                         String consentText,
                         String sevaConsent,
                         String devoteeConsent,
+                        String bookingConsent,
                         String updatedAt) {
         }
 
@@ -18,7 +19,8 @@ public class LegalDto {
                         @NotBlank String termsAndConditions,
                         @NotBlank String consentText,
                         String sevaConsent,
-                        String devoteeConsent
+                        String devoteeConsent,
+                        String bookingConsent
 
         ) {
         }

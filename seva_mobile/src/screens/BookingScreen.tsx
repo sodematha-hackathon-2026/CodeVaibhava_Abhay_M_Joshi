@@ -34,7 +34,7 @@ type RoomBookingReq = {
 export default function BookingScreen() {
   const { t } = useTranslation();
   const { config } = useAppConfig();
-  const { legal } = useLegal();
+  const { content } = useLegal();
   const user = auth().currentUser;
 
   const [name, setName] = useState("");
@@ -322,7 +322,7 @@ export default function BookingScreen() {
                 flex: 1,
                 color: THEME.colors.text.primary,
               }}>
-                {legal?.consentText || t('booking.allowDataStorage')}
+                {t('booking.allowDataStorage')}
               </Text>
             </Pressable>
 
@@ -360,7 +360,7 @@ export default function BookingScreen() {
       <LegalModal
         visible={showConsentInfo}
         title={t('consent.dataConsentInfo')}
-        body={legal?.consentText || "Consent information not available."}
+        body={content?.bookingConsent || "Consent information not available."}
         onClose={() => setShowConsentInfo(false)}
       />
     </>

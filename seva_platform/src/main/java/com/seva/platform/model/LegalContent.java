@@ -31,6 +31,9 @@ public class LegalContent {
     @Column(columnDefinition = "text")
     private String devoteeConsent;
 
+    @Column(columnDefinition = "text")
+    private String bookingConsent;
+
     @Column(nullable = false)
     private Instant updatedAt;
 

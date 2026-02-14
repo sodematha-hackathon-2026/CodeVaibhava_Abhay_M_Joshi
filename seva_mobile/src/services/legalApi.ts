@@ -7,6 +7,7 @@ export type LegalPayload = {
   updatedAt: string;
   sevaConsent: string; 
   devoteeConsent: string;
+  bookingConsent: string;
 };
 
 export async function fetchLegal(): Promise<LegalPayload> {

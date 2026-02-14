@@ -7,6 +7,7 @@ interface LegalContent {
   termsAndConditions: string;
   sevaConsent: string;
   devoteeConsent: string;
+  bookingConsent: string;
 }
 
 interface LegalContextType {
@@ -30,6 +31,7 @@ export const LegalProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     termsAndConditions: getDefaultTermsAndConditions(),
     sevaConsent: getDefaultSevaConsent(),
     devoteeConsent: getDefaultDevoteeConsent(),
+    bookingConsent: getDefaultBookingConsent(),
   });
   const [loading, setLoading] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
@@ -48,6 +50,7 @@ export const LegalProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         termsAndConditions: data.termsAndConditions || getDefaultTermsAndConditions(),
         sevaConsent: data.sevaConsent || getDefaultSevaConsent(),
         devoteeConsent: data.devoteeConsent || getDefaultDevoteeConsent(),
+        bookingConsent: data.bookingConsent || getDefaultBookingConsent(),
       });
     } catch (error) {
       console.log('Failed to load legal content, using defaults:', error);
@@ -78,6 +81,11 @@ export const LegalProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const showDevoteeConsent = () => {
     setModalTitle('Devotee Registration - Data Consent');
     setModalBody(content.devoteeConsent);
+    setModalVisible(true);
+  };
+  const showBookingConsent = () => {
+    setModalTitle('Room Booking - Data Consent');
+    setModalBody(content.bookingConsent);
     setModalVisible(true);
   };
 
@@ -323,6 +331,49 @@ By providing your information and proceeding with this seva booking, you consent
    • We do NOT sell your personal information
    • We may share with temple administration for seva fulfillment
    • We may share with payment processors for transaction processing
+
+For complete details, please read our Privacy Policy.
+
+By checking the consent box, you confirm that you have read and agree to our data practices.`;
+}
+
+function getDefaultBookingConsent(): string {
+  return `DATA CONSENT FOR ROOM BOOKING
+
+By providing your information and proceeding with this room booking, you consent to:
+
+1. INFORMATION COLLECTED:
+   • Name, phone number, email address, and address
+   • Room booking details and dates
+   • Check-in and check-out information
+   • Number of guests and special requirements
+
+2. HOW WE USE YOUR INFORMATION:
+   • Process and fulfill your room booking
+   • Send booking confirmation and updates
+   • Communicate about your stay and temple facilities
+   • Maintain records for temple administration
+   • Coordinate your accommodation arrangements
+
+3. DATA STORAGE:
+   • Your information is stored securely on our servers
+   • We retain your data for administrative and legal purposes
+   • Booking records maintained for temple management
+
+4. YOUR RIGHTS:
+   • You can request access to your data
+   • You can request deletion of your data (subject to legal requirements)
+   • You can opt-out of marketing communications
+
+5. DATA SHARING:
+   • We do NOT sell your personal information
+   • We may share with temple administration for room allocation and guest services
+   • Information shared internally for accommodation management
+
+6. TEMPLE STAY GUIDELINES:
+   • Room bookings are subject to temple availability
+   • Temple will contact you for confirmation
+   • Please follow temple rules and guidelines during your stay
 
 For complete details, please read our Privacy Policy.
 

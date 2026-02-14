@@ -25,6 +25,7 @@ public class LegalService {
                         .consentText("I agree to the Privacy Policy and Terms & Conditions.")
                         .sevaConsent("Seva Consent: (admin will update full content here)")
                         .devoteeConsent("Devotee Consent: (admin will update full content here)")
+                        .bookingConsent("Booking Consent: (admin will update full content here)")
                         .build()
         ));
     }
@@ -37,7 +38,9 @@ public class LegalService {
                 c.getConsentText(),
                 c.getSevaConsent(),
                 c.getDevoteeConsent(),
+                c.getBookingConsent(),
                 c.getUpdatedAt().toString()
+                
         );
     }
 

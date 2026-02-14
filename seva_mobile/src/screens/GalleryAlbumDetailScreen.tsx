@@ -125,7 +125,8 @@ export default function GalleryAlbumDetailScreen({ route, navigation }: Props) {
           }}>
             <Image
               source={{
-                uri: album.coverImageUrl || "https:              }}
+                uri: album.coverImageUrl || "https://via.placeholder.com/600x300.png?text=No+Cover+Image",
+              }}
               style={{ width: "100%", height: 180 }}
               resizeMode="cover"
             />
@@ -252,7 +253,7 @@ const MediaCard = ({
                 media.thumbnailUrl ||
                 (media.type === "IMAGE"
                   ? media.url
-                  : "https:            }}
+                  : "https://via.placeholder.com/400x300.png?text=No+Thumbnail")}}
             style={{ width: "100%", height: 120 }}
             resizeMode="cover"
           />

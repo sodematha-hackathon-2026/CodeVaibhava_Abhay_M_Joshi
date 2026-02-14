@@ -629,7 +629,7 @@ export default function HomeScreen() {
                     source={{
                       uri:
                         news[newsIndex].imageUrl ||
-                        "https:                    }}
+                        "https://via.placeholder.com/400x200.png?text=No+Image"}}
                     style={{ width: "100%", height: 200 }}
                     resizeMode="cover"
                   />

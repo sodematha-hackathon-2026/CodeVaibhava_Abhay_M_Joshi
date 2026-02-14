@@ -1,0 +1,55 @@
+{
+  "expo": {
+    "name": "seva_mobile",
+    "slug": "sodematha-app",
+    "version": "1.0.0",
+    "scheme": "sodematha",
+    "orientation": "portrait",
+    "icon": "./assets/logo.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FF6B00"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false,
+      "package": "com.abhayjoshi.sodemathaapp",
+      "googleServicesFile": "./google-services.json"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "./plugins/withManifestFix.js",
+      "./plugins/withAndroidXFix.js",
+      "@react-native-community/datetimepicker",
+      "@react-native-firebase/app",
+      "@react-native-firebase/auth",
+      "expo-web-browser",
+      "expo-secure-store",
+      "@react-native-firebase/messaging",
+      [
+        "@react-native-voice/voice",
+        {
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone for voice search.",
+          "speechRecognitionPermission": "Allow $(PRODUCT_NAME) to use speech recognition for voice search."
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "bd451638-debe-4c8d-ab11-483cc3010422"
+      }
+    }
+  }
+}

@@ -1,0 +1,82 @@
+# Vite/React .gitignore
+
+### Dependencies ###
+node_modules/
+.pnp
+.pnp.js
+
+### Testing ###
+coverage/
+.nyc_output
+
+### Production Build ###
+dist/
+build/
+out/
+
+### Environment Variables ###
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+
+### Logs ###
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+### Editor Directories ###
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+### OS Files ###
+.DS_Store
+Thumbs.db
+*.local
+
+### Vite ###
+*.local
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+### TypeScript ###
+*.tsbuildinfo
+next-env.d.ts
+
+### Temporary Files ###
+*.tmp
+*.temp
+*.cache
+.cache/
+
+### Firebase ###
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+### Package Managers ###
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+### ESLint ###
+.eslintcache
+
+### Storybook ###
+storybook-static/
+
+### Misc ###
+.vercel
+.turbo
+*.tgz

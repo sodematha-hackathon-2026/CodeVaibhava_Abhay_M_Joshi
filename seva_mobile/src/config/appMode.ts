@@ -1,0 +1,1 @@
+export const OTP_MODE: "demo" | "real" = "demo";

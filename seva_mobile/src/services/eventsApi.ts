@@ -6,6 +6,7 @@ export type EventItem = {
   description?: string;
   date: string;        weekday: string;
   tithi: string;
+  location?: string;
   type: "ARADHANA" | "PARYAYA" | "UTSAVA" | "GENERAL";
   scope: "LOCAL" | "NATIONAL";
   notifyUsers: boolean;

@@ -12,6 +12,7 @@ public record EventResponseDto(
         String tithi,
         String type,
         String scope,
+        String location,
         boolean notifyUsers,
         String imageUrl
 ) {
@@ -23,6 +24,7 @@ public record EventResponseDto(
                 e.getEventDate().toString(),
                 weekday,
                 tithi,
+                e.getLocation(),
                 e.getType().name(),
                 e.getScope().name(),
                 e.isNotifyUsers(),

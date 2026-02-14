@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { View, Text, Pressable, Animated, ViewStyle, TextStyle } from 'react-native';
 import { THEME } from '../theme/Theme';
 
-interface TempleCardProps {
+interface CardProps {
   children: React.ReactNode;
   onPress?: () => void;
   style?: ViewStyle;
@@ -10,7 +10,7 @@ interface TempleCardProps {
   withBorder?: boolean;
 }
 
-export const Card: React.FC<TempleCardProps> = ({
+export const Card: React.FC<CardProps> = ({
   children,
   onPress,
   style,

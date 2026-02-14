@@ -5,8 +5,10 @@ export type LegalPayload = {
   termsAndConditions: string;
   consentText: string;
   updatedAt: string;
+  sevaConsent: string; 
+  devoteeConsent: string;
 };
 
-export async function fetchLegal() {
-  return apiPublic("/api/legal", "GET");
+export async function fetchLegal(): Promise<LegalPayload> {
+  return apiPublic<LegalPayload>("/api/legal", "GET");
 }

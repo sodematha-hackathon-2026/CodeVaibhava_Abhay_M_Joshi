@@ -19,6 +19,7 @@ import { useTranslation } from "react-i18next";
 import { upsertUserProfile, UserProfile } from "../services/profileService";
 import { useLegal } from "../context/LegalContext";
 import LegalModal from "./LegalModal";
+import { THEME } from "../theme/Theme";
 
 type Props = {
   visible: boolean;
@@ -34,7 +35,7 @@ export default function DevoteeRegistrationModal({
   existingData,
 }: Props) {
   const { t } = useTranslation();
-  const { legal } = useLegal();
+  const { content } = useLegal();
   const user = auth().currentUser;
   const insets = useSafeAreaInsets();
 
@@ -179,32 +180,36 @@ export default function DevoteeRegistrationModal({
         presentationStyle="fullScreen"
         onRequestClose={onClose}
       >
-        <View style={{ flex: 1, backgroundColor: "#F3F4F6" }}>
+        <View style={{ flex: 1, backgroundColor: THEME.colors.background }}>
           <StatusBar style="dark" />
           
           {/* Header with Safe Area */}
           <View style={{ 
             paddingTop: Platform.OS === 'ios' ? insets.top : RNStatusBar.currentHeight || 0,
-            backgroundColor: "white"
+            backgroundColor: THEME.colors.surface
           }}>
             <View
               style={{
                 padding: 16,
-                backgroundColor: "white",
+                backgroundColor: THEME.colors.surface,
                 borderBottomWidth: 1,
-                borderColor: "#E5E7EB",
+                borderColor: THEME.colors.border.light,
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
               }}
             >
-              <Text style={{ fontSize: 18, fontWeight: "900" }}>
+              <Text style={{ 
+                fontSize: 18, 
+                fontWeight: "900",
+                color: THEME.colors.text.primary
+              }}>
                 {existingData?.consentToStore
                   ? t('devoteeRegistration.editTitle')
                   : t('devoteeRegistration.title')}
               </Text>
               <Pressable onPress={onClose}>
-                <Ionicons name="close" size={24} color="#111827" />
+                <Ionicons name="close" size={24} color={THEME.colors.text.primary} />
               </Pressable>
             </View>
           </View>
@@ -218,15 +223,24 @@ export default function DevoteeRegistrationModal({
             {/* Data Consent */}
             <View
               style={{
-                backgroundColor: "white",
-                borderRadius: 16,
+                backgroundColor: THEME.colors.surface,
+                borderRadius: THEME.borderRadius.lg,
                 padding: 14,
                 borderWidth: 1,
-                borderColor: "#E5E7EB",
+                borderColor: THEME.colors.border.light,
                 marginBottom: 14,
+                shadowColor: "#000",
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.05,
+                shadowRadius: 8,
+                elevation: 2,
               }}
             >
-              <Text style={{ fontSize: 16, fontWeight: "900" }}>
+              <Text style={{ 
+                fontSize: 16, 
+                fontWeight: "900",
+                color: THEME.colors.text.primary
+              }}>
                 {t('devoteeRegistration.dataConsent')}
               </Text>
 
@@ -244,9 +258,9 @@ export default function DevoteeRegistrationModal({
                     width: 24,
                     height: 24,
                     borderWidth: 2,
-                    borderColor: "#111827",
-                    backgroundColor: consentToStore ? "#111827" : "white",
-                    borderRadius: 4,
+                    borderColor: THEME.colors.primary,
+                    backgroundColor: consentToStore ? THEME.colors.primary : THEME.colors.surface,
+                    borderRadius: 6,
                     justifyContent: "center",
                     alignItems: "center",
                   }}
@@ -255,8 +269,12 @@ export default function DevoteeRegistrationModal({
                     <Ionicons name="checkmark" size={18} color="white" />
                   )}
                 </View>
-                <Text style={{ fontWeight: "700", flex: 1 }}>
-                  {legal?.consentText || t('devoteeRegistration.consentText')}
+                <Text style={{ 
+                  fontWeight: "700", 
+                  flex: 1,
+                  color: THEME.colors.text.primary
+                }}>
+                  {t('devoteeRegistration.consentText')}
                 </Text>
               </Pressable>
 
@@ -264,12 +282,19 @@ export default function DevoteeRegistrationModal({
                 onPress={() => setShowConsentInfo(true)}
                 style={{ marginTop: 8 }}
               >
-                <Text style={{ color: "#2563EB", fontWeight: "600" }}>
-                  {t('consent.dataConsentInfo')}
+                <Text style={{ 
+                  color: THEME.colors.primary, 
+                  fontWeight: "600" 
+                }}>
+                  ℹ️ {t('consent.dataConsentInfo')}
                 </Text>
               </Pressable>
 
-              <Text style={{ marginTop: 8, color: "#6B7280", fontSize: 13 }}>
+              <Text style={{ 
+                marginTop: 8, 
+                color: THEME.colors.text.secondary, 
+                fontSize: 13 
+              }}>
                 {t('devoteeRegistration.requiredText')}
               </Text>
             </View>
@@ -278,18 +303,30 @@ export default function DevoteeRegistrationModal({
             {consentToStore && (
               <View
                 style={{
-                  backgroundColor: "white",
-                  borderRadius: 16,
+                  backgroundColor: THEME.colors.surface,
+                  borderRadius: THEME.borderRadius.lg,
                   padding: 14,
                   borderWidth: 1,
-                  borderColor: "#E5E7EB",
+                  borderColor: THEME.colors.border.light,
                   marginBottom: 14,
+                  shadowColor: "#000",
+                  shadowOffset: { width: 0, height: 2 },
+                  shadowOpacity: 0.05,
+                  shadowRadius: 8,
+                  elevation: 2,
                 }}
               >
-                <Text style={{ fontSize: 16, fontWeight: "900" }}>
+                <Text style={{ 
+                  fontSize: 16, 
+                  fontWeight: "900",
+                  color: THEME.colors.text.primary
+                }}>
                   {t('devoteeRegistration.addressDetails')}
                 </Text>
-                <Text style={{ marginTop: 6, color: "#6B7280" }}>
+                <Text style={{ 
+                  marginTop: 6, 
+                  color: THEME.colors.text.secondary 
+                }}>
                   {t('devoteeRegistration.helpStayConnected')}
                 </Text>
 
@@ -326,18 +363,30 @@ export default function DevoteeRegistrationModal({
             {consentToStore && (
               <View
                 style={{
-                  backgroundColor: "white",
-                  borderRadius: 16,
+                  backgroundColor: THEME.colors.surface,
+                  borderRadius: THEME.borderRadius.lg,
                   padding: 14,
                   borderWidth: 1,
-                  borderColor: "#E5E7EB",
+                  borderColor: THEME.colors.border.light,
                   marginBottom: 14,
+                  shadowColor: "#000",
+                  shadowOffset: { width: 0, height: 2 },
+                  shadowOpacity: 0.05,
+                  shadowRadius: 8,
+                  elevation: 2,
                 }}
               >
-                <Text style={{ fontSize: 16, fontWeight: "900" }}>
+                <Text style={{ 
+                  fontSize: 16, 
+                  fontWeight: "900",
+                  color: THEME.colors.text.primary
+                }}>
                   {t('devoteeRegistration.communicationPreferences')}
                 </Text>
-                <Text style={{ marginTop: 6, color: "#6B7280" }}>
+                <Text style={{ 
+                  marginTop: 6, 
+                  color: THEME.colors.text.secondary 
+                }}>
                   {t('devoteeRegistration.chooseConnection')}
                 </Text>
 
@@ -349,8 +398,8 @@ export default function DevoteeRegistrationModal({
                     gap: 10,
                     marginTop: 12,
                     padding: 12,
-                    backgroundColor: "#F9FAFB",
-                    borderRadius: 12,
+                    backgroundColor: THEME.colors.overlay,
+                    borderRadius: THEME.borderRadius.md,
                   }}
                 >
                   <View
@@ -358,9 +407,9 @@ export default function DevoteeRegistrationModal({
                       width: 24,
                       height: 24,
                       borderWidth: 2,
-                      borderColor: "#111827",
-                      backgroundColor: wantsUpdates ? "#111827" : "white",
-                      borderRadius: 4,
+                      borderColor: THEME.colors.primary,
+                      backgroundColor: wantsUpdates ? THEME.colors.primary : THEME.colors.surface,
+                      borderRadius: 6,
                       justifyContent: "center",
                       alignItems: "center",
                     }}
@@ -370,10 +419,17 @@ export default function DevoteeRegistrationModal({
                     )}
                   </View>
                   <View style={{ flex: 1 }}>
-                    <Text style={{ fontWeight: "700" }}>
+                    <Text style={{ 
+                      fontWeight: "700",
+                      color: THEME.colors.text.primary
+                    }}>
                       {t('devoteeRegistration.receiveUpdates')}
                     </Text>
-                    <Text style={{ marginTop: 4, color: "#6B7280", fontSize: 13 }}>
+                    <Text style={{ 
+                      marginTop: 4, 
+                      color: THEME.colors.text.secondary, 
+                      fontSize: 13 
+                    }}>
                       {t('devoteeRegistration.receiveUpdatesDesc')}
                     </Text>
                   </View>
@@ -387,8 +443,8 @@ export default function DevoteeRegistrationModal({
                     gap: 10,
                     marginTop: 10,
                     padding: 12,
-                    backgroundColor: "#F9FAFB",
-                    borderRadius: 12,
+                    backgroundColor: THEME.colors.overlay,
+                    borderRadius: THEME.borderRadius.md,
                   }}
                 >
                   <View
@@ -396,9 +452,9 @@ export default function DevoteeRegistrationModal({
                       width: 24,
                       height: 24,
                       borderWidth: 2,
-                      borderColor: "#111827",
-                      backgroundColor: wantsToVolunteer ? "#111827" : "white",
-                      borderRadius: 4,
+                      borderColor: THEME.colors.primary,
+                      backgroundColor: wantsToVolunteer ? THEME.colors.primary : THEME.colors.surface,
+                      borderRadius: 6,
                       justifyContent: "center",
                       alignItems: "center",
                     }}
@@ -408,16 +464,27 @@ export default function DevoteeRegistrationModal({
                     )}
                   </View>
                   <View style={{ flex: 1 }}>
-                    <Text style={{ fontWeight: "700" }}>
+                    <Text style={{ 
+                      fontWeight: "700",
+                      color: THEME.colors.text.primary
+                    }}>
                       {t('devoteeRegistration.interestedVolunteering')}
                     </Text>
-                    <Text style={{ marginTop: 4, color: "#6B7280", fontSize: 13 }}>
+                    <Text style={{ 
+                      marginTop: 4, 
+                      color: THEME.colors.text.secondary, 
+                      fontSize: 13 
+                    }}>
                       {t('devoteeRegistration.interestedVolunteeringDesc')}
                     </Text>
                   </View>
                 </Pressable>
 
-                <Text style={{ marginTop: 12, color: "#6B7280", fontSize: 13 }}>
+                <Text style={{ 
+                  marginTop: 12, 
+                  color: THEME.colors.text.secondary, 
+                  fontSize: 13 
+                }}>
                   {t('devoteeRegistration.changeAnytime')}
                 </Text>
               </View>
@@ -428,17 +495,26 @@ export default function DevoteeRegistrationModal({
               onPress={save}
               disabled={saving}
               style={{
-                backgroundColor: "#111827",
+                backgroundColor: THEME.colors.primary,
                 paddingVertical: 14,
-                borderRadius: 12,
+                borderRadius: THEME.borderRadius.md,
                 alignItems: "center",
                 opacity: saving ? 0.6 : 1,
+                shadowColor: THEME.colors.primary,
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: 0.3,
+                shadowRadius: 8,
+                elevation: 4,
               }}
             >
               {saving ? (
                 <ActivityIndicator color="white" />
               ) : (
-                <Text style={{ color: "white", fontWeight: "700", fontSize: 16 }}>
+                <Text style={{ 
+                  color: "white", 
+                  fontWeight: "700", 
+                  fontSize: 16 
+                }}>
                   {existingData?.consentToStore
                     ? t('devoteeRegistration.updateRegistration')
                     : t('devoteeRegistration.completeRegistration')}
@@ -453,15 +529,19 @@ export default function DevoteeRegistrationModal({
                 style={{
                   marginTop: 12,
                   paddingVertical: 14,
-                  borderRadius: 12,
+                  borderRadius: THEME.borderRadius.md,
                   alignItems: "center",
-                  borderWidth: 1,
-                  borderColor: "#DC2626",
-                  backgroundColor: "white",
+                  borderWidth: 2,
+                  borderColor: THEME.colors.error,
+                  backgroundColor: THEME.colors.surface,
                   opacity: saving ? 0.6 : 1,
                 }}
               >
-                <Text style={{ fontWeight: "700", color: "#DC2626", fontSize: 16 }}>
+                <Text style={{ 
+                  fontWeight: "700", 
+                  color: THEME.colors.error, 
+                  fontSize: 16 
+                }}>
                   {t('devoteeRegistration.removeRegistration')}
                 </Text>
               </Pressable>
@@ -473,7 +553,7 @@ export default function DevoteeRegistrationModal({
       <LegalModal
         visible={showConsentInfo}
         title={t('consent.dataConsentInfo')}
-        body={legal?.consentText || "Consent information not available."}
+        body={content?.devoteeConsent || "Consent information not available."}
         onClose={() => setShowConsentInfo(false)}
       />
     </>
@@ -493,21 +573,26 @@ function Field({
 }) {
   return (
     <View style={{ marginTop: 12 }}>
-      <Text style={{ fontWeight: "700", marginBottom: 6, color: "#374151" }}>
+      <Text style={{ 
+        fontWeight: "800", 
+        marginBottom: 6, 
+        color: THEME.colors.text.primary 
+      }}>
         {label}
       </Text>
       <TextInput
         value={value}
         onChangeText={onChange}
         keyboardType={keyboardType}
-        placeholderTextColor="#9CA3AF"
+        placeholderTextColor={THEME.colors.text.tertiary}
         style={{
-          borderWidth: 1,
-          borderColor: "#D1D5DB",
-          borderRadius: 10,
+          borderWidth: 2,
+          borderColor: THEME.colors.border.medium,
+          borderRadius: THEME.borderRadius.md,
           padding: 12,
-          backgroundColor: "white",
+          backgroundColor: THEME.colors.surface,
           fontSize: 16,
+          color: THEME.colors.text.primary,
         }}
       />
     </View>

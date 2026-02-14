@@ -24,7 +24,7 @@ const TEST_NUMBERS = ["+919999999999", "+918888888888"];
 
 export default function LoginScreen() {
   const { t } = useTranslation();
-  const { legal } = useLegal();
+  const { content } = useLegal();
 
   const [phone, setPhone] = useState("");
   const [otp, setOtp] = useState("");
@@ -36,12 +36,12 @@ export default function LoginScreen() {
   const [showTerms, setShowTerms] = useState(false);
   const [confirm, setConfirm] = useState<any>(null);
 
-    const fadeAnim = useRef(new Animated.Value(0)).current;
+  const fadeAnim = useRef(new Animated.Value(0)).current;
   const slideAnim = useRef(new Animated.Value(50)).current;
   const logoAnim = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
-        Animated.parallel([
+    Animated.parallel([
       Animated.timing(fadeAnim, {
         toValue: 1,
         duration: 800,
@@ -55,7 +55,7 @@ export default function LoginScreen() {
       }),
     ]).start();
 
-        Animated.loop(
+    Animated.loop(
       Animated.sequence([
         Animated.timing(logoAnim, {
           toValue: 1.15,
@@ -182,11 +182,23 @@ export default function LoginScreen() {
               withBorder={false}
             >
               <Text
-                style={{ fontSize: 12, fontWeight: "700", color: "#92400E", textAlign: "center" }}
+                style={{
+                  fontSize: 12,
+                  fontWeight: "700",
+                  color: "#92400E",
+                  textAlign: "center",
+                }}
               >
                 🧪 Demo Mode
               </Text>
-              <Text style={{ fontSize: 11, color: "#B45309", marginTop: 2, textAlign: "center" }}>
+              <Text
+                style={{
+                  fontSize: 11,
+                  color: "#B45309",
+                  marginTop: 2,
+                  textAlign: "center",
+                }}
+              >
                 Use test numbers.
               </Text>
             </Card>
@@ -462,16 +474,14 @@ export default function LoginScreen() {
         <LegalModal
           visible={showPrivacy}
           title={t("consent.privacyPolicy")}
-          body={legal?.privacyPolicy || "Privacy Policy not available."}
+          body={content?.privacyPolicy || "Privacy Policy not available."}
           onClose={() => setShowPrivacy(false)}
         />
 
         <LegalModal
           visible={showTerms}
           title={t("consent.termsConditions")}
-          body={
-            legal?.termsAndConditions || "Terms & Conditions not available."
-          }
+          body={content?.termsAndConditions || "Terms & Conditions not available."}
           onClose={() => setShowTerms(false)}
         />
       </View>

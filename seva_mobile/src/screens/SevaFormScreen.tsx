@@ -36,7 +36,7 @@ type FormState = {
 
 export default function SevaFormScreen({ route, navigation }: Props) {
   const { t } = useTranslation();
-  const { legal } = useLegal();
+  const { content } = useLegal();
   const { seva } = route.params;
   const user = auth().currentUser;
 
@@ -314,7 +314,7 @@ export default function SevaFormScreen({ route, navigation }: Props) {
             </Text>
             
             <Toggle
-              label={legal?.consentText || t('sevas.consentToStore')}
+              label={t('sevas.consentToStore')}
               value={consentToStore}
               onToggle={() => setConsentToStore((v) => !v)}
             />
@@ -482,7 +482,7 @@ export default function SevaFormScreen({ route, navigation }: Props) {
       <LegalModal
         visible={showConsentInfo}
         title={t('consent.dataConsentInfo')}
-        body={legal?.consentText || "Consent information not available."}
+        body={content?.sevaConsent || "Consent information not available."}
         onClose={() => setShowConsentInfo(false)}
       />
     </>

@@ -23,6 +23,8 @@ public class LegalService {
                         .privacyPolicy("Privacy Policy: (admin will update full content here)")
                         .termsAndConditions("Terms & Conditions: (admin will update full content here)")
                         .consentText("I agree to the Privacy Policy and Terms & Conditions.")
+                        .sevaConsent("Seva Consent: (admin will update full content here)")
+                        .devoteeConsent("Devotee Consent: (admin will update full content here)")
                         .build()
         ));
     }
@@ -33,6 +35,8 @@ public class LegalService {
                 c.getPrivacyPolicy(),
                 c.getTermsAndConditions(),
                 c.getConsentText(),
+                c.getSevaConsent(),
+                c.getDevoteeConsent(),
                 c.getUpdatedAt().toString()
         );
     }
@@ -43,6 +47,8 @@ public class LegalService {
         c.setPrivacyPolicy(req.privacyPolicy());
         c.setTermsAndConditions(req.termsAndConditions());
         c.setConsentText(req.consentText());
+        if (req.sevaConsent() != null) c.setSevaConsent(req.sevaConsent());
+        if (req.devoteeConsent() != null) c.setDevoteeConsent(req.devoteeConsent());
         repo.save(c);
         return getPublic();
     }

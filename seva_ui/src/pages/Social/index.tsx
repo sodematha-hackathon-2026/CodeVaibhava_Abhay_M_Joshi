@@ -27,7 +27,9 @@ export const SocialPage: React.FC = () => {
   const [links, setLinks] = useState<SocialLinkAdminItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [editingItem, setEditingItem] = useState<SocialLinkAdminItem | null>(null);
+  const [editingItem, setEditingItem] = useState<SocialLinkAdminItem | null>(
+    null,
+  );
   const [formData, setFormData] = useState<SocialLinkUpsert>({
     platform: "",
     url: "",
@@ -138,7 +140,10 @@ export const SocialPage: React.FC = () => {
         }}
       >
         <Box>
-          <Typography variant="h4" sx={{ fontWeight: 700, color: "#333", mb: 1 }}>
+          <Typography
+            variant="h4"
+            sx={{ fontWeight: 700, color: "#333", mb: 1 }}
+          >
             Social Media Links
           </Typography>
           <Typography variant="body1" color="text.secondary">
@@ -166,12 +171,20 @@ export const SocialPage: React.FC = () => {
       </Box>
 
       {message && (
-        <Alert severity="success" sx={{ mb: 3, borderRadius: 2 }} onClose={() => setMessage("")}>
+        <Alert
+          severity="success"
+          sx={{ mb: 3, borderRadius: 2 }}
+          onClose={() => setMessage("")}
+        >
           {message}
         </Alert>
       )}
       {error && (
-        <Alert severity="error" sx={{ mb: 3, borderRadius: 2 }} onClose={() => setError("")}>
+        <Alert
+          severity="error"
+          sx={{ mb: 3, borderRadius: 2 }}
+          onClose={() => setError("")}
+        >
           {error}
         </Alert>
       )}
@@ -237,7 +250,8 @@ export const SocialPage: React.FC = () => {
               onChange={handleChange}
               required
               margin="normal"
-              placeholder="https:              sx={{
+              placeholder="https://placeholder.com"
+              sx={{
                 "& .MuiOutlinedInput-root": {
                   borderRadius: 2,
                   "&.Mui-focused fieldset": { borderColor: "#ff6b00" },
@@ -253,10 +267,13 @@ export const SocialPage: React.FC = () => {
                     onChange={handleChange}
                     name="active"
                     sx={{
-                      "& .MuiSwitch-switchBase.Mui-checked": { color: "#ff6b00" },
-                      "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
-                        backgroundColor: "#ff6b00",
+                      "& .MuiSwitch-switchBase.Mui-checked": {
+                        color: "#ff6b00",
                       },
+                      "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track":
+                        {
+                          backgroundColor: "#ff6b00",
+                        },
                     }}
                   />
                 }
@@ -267,7 +284,11 @@ export const SocialPage: React.FC = () => {
           <DialogActions sx={{ p: 3, gap: 1 }}>
             <Button
               onClick={handleCloseDialog}
-              sx={{ color: "#666", fontWeight: 600, "&:hover": { bgcolor: "#f5f5f5" } }}
+              sx={{
+                color: "#666",
+                fontWeight: 600,
+                "&:hover": { bgcolor: "#f5f5f5" },
+              }}
             >
               Cancel
             </Button>
@@ -279,7 +300,8 @@ export const SocialPage: React.FC = () => {
                 px: 4,
                 fontWeight: 600,
                 "&:hover": {
-                  background: "linear-gradient(135deg, #e65100 0%, #f57c00 100%)",
+                  background:
+                    "linear-gradient(135deg, #e65100 0%, #f57c00 100%)",
                 },
               }}
             >

@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-# 🕉️ Seva Platform - Complete Ecosystem
+# SodeMatha - Complete Ecosystem
 
 > A comprehensive digital platform for Sode Sri Vadiraja Matha to manage devotee services, events, donations, and spiritual content.
 

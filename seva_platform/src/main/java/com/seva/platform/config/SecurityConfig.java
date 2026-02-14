@@ -7,14 +7,9 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.util.Arrays;
-import java.util.List;
 
 @Configuration
 public class SecurityConfig {
@@ -39,6 +34,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/artefacts/**").permitAll()
                         .requestMatchers("/api/history/**").permitAll()
                         .requestMatchers("/api/quiz/**").permitAll()
+                        .requestMatchers("/api/push/**").authenticated()
                         .requestMatchers("/api/room-bookings/**").authenticated()
 
                         // Admin endpoints

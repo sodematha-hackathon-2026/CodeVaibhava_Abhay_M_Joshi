@@ -55,6 +55,9 @@ public class EventService {
     }
 
     public Event create(EventDto.CreateOrUpdate req) {
+        System.out.println("=== EVENT SERVICE: create() called ===");
+        System.out.println("Request notifyUsers: " + req.notifyUsers());
+
         Event e = Event.builder()
                 .title(req.title())
                 .description(req.description())
@@ -68,10 +71,18 @@ public class EventService {
                 .active(req.active())
                 .build();
 
+        System.out.println("Event built. notifyUsers: " + e.isNotifyUsers());
+
         Event saved = repo.save(e);
 
+        System.out.println("Event saved. ID: " + saved.getId());
+        System.out.println("Saved event notifyUsers: " + saved.isNotifyUsers());
+
         if (saved.isNotifyUsers()) {
+            System.out.println("notifyUsers is TRUE - calling sendEventNotification()");
             sendEventNotification(saved);
+        } else {
+            System.out.println("notifyUsers is FALSE - skipping notification");
         }
 
         return saved;
@@ -105,6 +116,11 @@ public class EventService {
     }
 
     private void sendEventNotification(Event event) {
+        System.out.println("=== ATTEMPTING TO SEND EVENT NOTIFICATION ===");
+        System.out.println("Event ID: " + event.getId());
+        System.out.println("Event Title: " + event.getTitle());
+        System.out.println("Notify Users: " + event.isNotifyUsers());
+
         try {
             DayOfWeek dow = DayOfWeek.from(event.getEventDate());
             String weekday = capitalize(dow.name());
@@ -115,14 +131,23 @@ public class EventService {
             String title = event.getType() + " Event";
             String body = event.getTitle() + " • " + weekday + " • " + tithi;
 
+            System.out.println("Notification Title: " + title);
+            System.out.println("Notification Body: " + body);
+            System.out.println("Calling pushSendService.sendToAllEnabled()...");
+
             pushSendService.sendToAllEnabled(title, body);
+
+            System.out.println("Notification call completed!");
+
         } catch (Exception ex) {
             System.err.println("Failed to send push notification: " + ex.getMessage());
+            ex.printStackTrace();
         }
     }
 
     private static String capitalize(String s) {
-        if (s == null || s.isBlank()) return s;
+        if (s == null || s.isBlank())
+            return s;
         String lower = s.toLowerCase();
         return Character.toUpperCase(lower.charAt(0)) + lower.substring(1);
     }

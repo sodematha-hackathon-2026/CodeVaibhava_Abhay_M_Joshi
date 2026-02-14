@@ -4,6 +4,7 @@ import com.seva.platform.dto.PushDto;
 import com.seva.platform.security.AuthUser;
 import com.seva.platform.service.PushTokenService;
 import jakarta.validation.Valid;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,8 +21,7 @@ public class PushController {
     @PostMapping("/register")
     public void register(
             @AuthenticationPrincipal AuthUser user,
-            @Valid @RequestBody PushDto.RegisterRequest req
-    ) {
+            @Valid @RequestBody PushDto.RegisterRequest req) {
         if (user == null) {
             throw new RuntimeException("Unauthorized");
         }

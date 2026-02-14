@@ -11,18 +11,40 @@ import java.util.List;
 public class PushSendService {
     private final PushTokenRepository repo;
 
-    public PushSendService(PushTokenRepository repo) { this.repo = repo; }
+    public PushSendService(PushTokenRepository repo) {
+        this.repo = repo;
+    }
 
     public void sendToAllEnabled(String title, String body) {
-        List<String> tokens = repo.findByEnabledTrue().stream().map(t -> t.getToken()).toList();
-        if (tokens.isEmpty()) return;
-
-        MulticastMessage msg = MulticastMessage.builder()
-                .addAllTokens(tokens)
-                .setNotification(Notification.builder().setTitle(title).setBody(body).build())
-                .build();
-
-        try { FirebaseMessaging.getInstance().sendMulticast(msg); }
-        catch (Exception e) { System.out.println("FCM send error: " + e.getMessage()); }
+    System.out.println("=== PUSH SERVICE: sendToAllEnabled called ===");
+    System.out.println("Title: " + title);
+    System.out.println("Body: " + body);
+    
+    List<String> tokens = repo.findByEnabledTrue()
+        .stream()
+        .map(t -> t.getToken())
+        .toList();
+    
+    System.out.println("Found " + tokens.size() + " enabled tokens");
+    
+    if (tokens.isEmpty()) {
+        System.out.println("No enabled tokens found - skipping notification");
+        return;
     }
+
+    MulticastMessage msg = MulticastMessage.builder()
+            .addAllTokens(tokens)
+            .setNotification(Notification.builder().setTitle(title).setBody(body).build())
+            .build();
+
+    try { 
+        System.out.println("Sending multicast notification to " + tokens.size() + " devices...");
+        var result = FirebaseMessaging.getInstance().sendEachForMulticast(msg);
+        System.out.println("Multicast sent! Success: " + result.getSuccessCount() + ", Failed: " + result.getFailureCount());
+    }
+    catch (Exception e) { 
+        System.err.println("FCM send error: " + e.getMessage());
+        e.printStackTrace();
+    }
+}
 }
